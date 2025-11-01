@@ -22,3 +22,31 @@ const object = lines.slice(1).map((line)=>{
 
 //SORTing the transaction by date
     const sorted_data= data.sort((a,b)=>{new Date(a.date)-new Date(b.date)});
+
+// SUMMary 
+let summ_arr={};
+sorted_data.forEach(element => {
+        const name = element.AccountHolder;
+        const amount = element.Number(element.Amount)
+        const type = element.Type.toLowerCase();
+        const remark = element.Remarks.toLowerCase();
+    if (!summ_arr) {
+       summ_arr={
+        AccountHolder:name,
+        TotalCredit: 0,
+        TotalDebit: 0,
+        LargestTransaction: 0,
+        SalaryTransactions: []
+       };
+    }
+      if(type=="credit") summ_arr[name].TotalCredit +=amount ;
+      else if(type=="debit") summ_arr[name].TotalDebit+=amount ;
+
+      if(amount >LargestTransaction){
+        summ_arr[name].LargestTransaction=amount;
+      }
+      if (remark.include("salary")) {
+            summ_arr[name].SalaryTransactions.push(element.TransactionID);        
+      }
+
+});

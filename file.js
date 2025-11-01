@@ -19,3 +19,6 @@ const object = lines.slice(1).map((line)=>{
         }
         return arr;
 });
+
+//SORTing the transaction by date
+    const sorted_data= data.sort((a,b)=>{new Date(a.date)-new Date(b.date)});

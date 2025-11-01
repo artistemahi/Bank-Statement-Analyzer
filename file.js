@@ -55,7 +55,7 @@ const summary_array=Object.values(summ_arr);
 
 
 const header = "AccountHolder,TotalCredit,TotalDebit,LargestTransaction,SalaryTransactions";
-let csv = header;
+let csv = header +"\n";
 for(let i =0; i < summary_array.length; i++){
     const user = summary_array[i];
     csv += `${user.AccountHolder},${user.TotalCredit},${user.TotalDebit},${user.LargestTransaction},${user.SalaryTransactions}` 
